@@ -148,125 +148,125 @@ agent  = agent(~isnan(agent));
         modelresults{j}=out;
         modelresults{j}.info=modelout;
         
-%     elseif strcmp(modelID, 'one_k_one_beta_linear'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@one_k_one_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k'; 'beta'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=one_k_one_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%     elseif strcmp(modelID, 'two_k_one_beta_linear'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@two_k_one_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k_self'; 'k_other'; 'beta'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=two_k_one_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%     elseif strcmp(modelID, 'two_k_two_beta_linear'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@two_k_two_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k_self'; 'k_other'; 'beta_self'; 'beta_other'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=two_k_two_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%     elseif strcmp(modelID, 'one_k_two_beta_linear'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@one_k_two_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k'; 'beta_self'; 'beta_other'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=one_k_two_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%    
-%     elseif strcmp(modelID, 'one_k_one_beta_hyperbolic'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@one_k_one_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k'; 'beta'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=one_k_one_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%     elseif strcmp(modelID, 'two_k_one_beta_hyperbolic'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@two_k_one_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k_self'; 'k_other'; 'beta'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=two_k_one_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%    elseif strcmp(modelID, 'two_k_two_beta_hyperbolic'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@two_k_two_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k_self'; 'k_other'; 'beta_self'; 'beta_other'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=two_k_two_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
-%         
-%    elseif strcmp(modelID, 'one_k_two_beta_hyperbolic'),
-%         %%% I.) first fit the model:
-%         outtype=1;
-%         Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
-%         [out.x, out.fval, exitflag] = fminsearch(@one_k_two_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
-%         out.xnames={'k'; 'beta_self'; 'beta_other'};             % the names of the free parameters
-%         out.modelID=modelID;
-%         %%% II.) Get modeled schedule:
-%         outtype=2;
-%         Parameter=out.x;  
-%         modelout=one_k_two_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
-%         %%% III.) Now save:
-%         modelresults{j}=out;
-%         modelresults{j}.info=modelout;
+    elseif strcmp(modelID, 'one_k_one_beta_linear'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@one_k_one_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k'; 'beta'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=one_k_one_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+    elseif strcmp(modelID, 'two_k_one_beta_linear'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@two_k_one_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k_self'; 'k_other'; 'beta'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=two_k_one_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+    elseif strcmp(modelID, 'two_k_two_beta_linear'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@two_k_two_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k_self'; 'k_other'; 'beta_self'; 'beta_other'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=two_k_two_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+    elseif strcmp(modelID, 'one_k_two_beta_linear'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@one_k_two_beta_linear,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k'; 'beta_self'; 'beta_other'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=one_k_two_beta_linear(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+    elseif strcmp(modelID, 'one_k_one_beta_hyperbolic'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@one_k_one_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k'; 'beta'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=one_k_one_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+    elseif strcmp(modelID, 'two_k_one_beta_hyperbolic'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@two_k_one_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k_self'; 'k_other'; 'beta'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=two_k_one_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+   elseif strcmp(modelID, 'two_k_two_beta_hyperbolic'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@two_k_two_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k_self'; 'k_other'; 'beta_self'; 'beta_other'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=two_k_two_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
+
+   elseif strcmp(modelID, 'one_k_two_beta_hyperbolic'),
+        %%% I.) first fit the model:
+        outtype=1;
+        Parameter=[.1 .1 .1 ];                                                                                                                            % the starting values of the free parameters
+        [out.x, out.fval, exitflag] = fminsearch(@one_k_two_beta_hyperbolic,Parameter,options,chosen,effort,reward,agent,stim_props,outtype); 
+        out.xnames={'k'; 'beta_self'; 'beta_other'};             % the names of the free parameters
+        out.modelID=modelID;
+        %%% II.) Get modeled schedule:
+        outtype=2;
+        Parameter=out.x;  
+        modelout=one_k_two_beta_hyperbolic(Parameter,chosen,effort,reward,agent,stim_props,outtype); 
+        %%% III.) Now save:
+        modelresults{j}=out;
+        modelresults{j}.info=modelout;
         
  
        
