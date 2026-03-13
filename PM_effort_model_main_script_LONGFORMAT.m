@@ -93,6 +93,8 @@ end
 save('output_all_models.mat', 'output')
 
 
+
+
 %% 4. Export to CSV - Long Format
 %  Columns: subject_id | family | model | k_self | k_other | beta_self | beta_other | NLL | AIC | BIC
 %  Total rows = 84 sujetos x 3 familias x 4 modelos = 1008 filas
