@@ -204,6 +204,10 @@ writetable(long_table, 'output_all_models_long.csv');
 fprintf('Long format saved: %d rows x %d columns\n', height(long_table), width(long_table));
 
 
+
+
+
+
 %% 5. Model comparison summary (sum BIC por modelo - menor es mejor)
 
 model_names_all = {};
@@ -242,14 +246,14 @@ writetable(comparison_table, 'model_comparison_12models.csv');
 
 
 
-%% Script para transformar output_all_models_long.csv a formato wide
+%% 6. Script para transformar output_all_models_long.csv a formato wide
 %  Input:  output_all_models_long.csv (1008 filas, long format)
 %  Output: output_wide_fit_metrics.xlsx (84 filas, wide format)
 
 
 % Cargar datos
-long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\output_all_models_long.csv');
-datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Data\datos_long_models.csv');
+long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Output Seba\output_all_models_long.csv');
+datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Datos Seba\datos_long_models.csv');
 
 % Extraer grupo por sujeto
 if iscell(datos_grupo.sub) || isstring(datos_grupo.sub)
