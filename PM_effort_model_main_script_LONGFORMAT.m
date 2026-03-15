@@ -95,6 +95,13 @@ save('output_all_models.mat', 'output')
 
 
 
+
+
+
+
+
+
+
 %% 4. Export to CSV - Long Format
 %  Columns: subject_id | family | model | k_self | k_other | beta_self | beta_other | NLL | AIC | BIC
 %  Total rows = 84 sujetos x 3 familias x 4 modelos = 1008 filas
@@ -225,5 +232,84 @@ comparison_table = table(model_names_all', sum_aic_all', sum_bic_all', ...
     'VariableNames', {'model', 'sum_AIC', 'sum_BIC'});
 writetable(comparison_table, 'model_comparison_12models.csv');
 
-disp('=== Model Comparison (sum BIC - lower is better) ===');
-disp(comparison_table);
+
+
+
+
+
+
+
+
+
+
+%% Script para transformar output_all_models_long.csv a formato wide
+%  Input:  output_all_models_long.csv (1008 filas, long format)
+%  Output: output_wide_fit_metrics.xlsx (84 filas, wide format)
+
+
+% Cargar datos
+long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\output_all_models_long.csv');
+datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Data\datos_long_models.csv');
+
+% Extraer grupo por sujeto
+if iscell(datos_grupo.sub) || isstring(datos_grupo.sub)
+    sub_nums = str2double(datos_grupo.sub);
+else
+    sub_nums = datos_grupo.sub;
+end
+
+if iscell(datos_grupo.grupo) || isstring(datos_grupo.grupo)
+    grupo_nums = str2double(datos_grupo.grupo);
+else
+    grupo_nums = datos_grupo.grupo;
+end
+
+grupo_table = table(sub_nums, grupo_nums, 'VariableNames', {'subject_id', 'grupo'});
+grupo_table = unique(grupo_table, 'rows');
+
+% Asegurar tipos correctos en long_data
+if iscell(long_data.subject_id) || isstring(long_data.subject_id)
+    long_data.subject_id = str2double(long_data.subject_id);
+end
+if iscell(long_data.family)
+    long_data.family = string(long_data.family);
+end
+if iscell(long_data.model)
+    long_data.model = string(long_data.model);
+end
+
+% Mapeo de familia a letra
+family_map = containers.Map({'parabolic','linear','hyperbolic'}, {'p','l','h'});
+
+% Crear tabla wide
+unique_subs = unique(long_data.subject_id);
+wide_table = table(unique_subs, 'VariableNames', {'subject_id'});
+
+families = {'parabolic', 'linear', 'hyperbolic'};
+models   = {'1K1B', '1K2B', '2K1B', '2K2B'};
+metrics  = {'NLL', 'AIC', 'BIC'};
+
+for f = 1:length(families)
+    fam = families{f};
+    fam_letter = family_map(fam);
+    
+    for m = 1:length(models)
+        mod = models{m};
+        
+        idx = long_data.family == fam & long_data.model == mod;
+        subset = sortrows(long_data(idx, :), 'subject_id');
+        
+        for mt = 1:length(metrics)
+            metric = metrics{mt};
+            col_name = [fam_letter '_' lower(mod) '_' metric];
+            wide_table.(col_name) = subset.(metric);
+        end
+    end
+end
+
+% Agregar grupo con innerjoin
+wide_table = innerjoin(wide_table, grupo_table, 'Keys', 'subject_id');
+
+% Guardar como .xlsx
+writetable(wide_table, 'output_wide_fit_metrics.xlsx');
+fprintf('Archivo guardado: %d filas x %d columnas\n', height(wide_table), width(wide_table));
