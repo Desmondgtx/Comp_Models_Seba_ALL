@@ -61,4 +61,25 @@ diego.Properties.VariableNames{'sub'} = 'subject_id';
 merged = innerjoin(diego, params, 'Keys', 'subject_id');
  
 writetable(merged, 'dataset_completo.xlsx');
+
+
+
+
+% Add column
+
+clear all; clc;
+ 
+params = readtable('Sabana Datos\params_2k1b_all_families.xlsx');
+diego = readtable('Sabana Datos\pasar_a_diego_v2.csv');
+ 
+if iscell(diego.sub) || isstring(diego.sub)
+    diego.sub = str2double(diego.sub);
+end
+ 
+grupo_table = table(diego.sub, diego.grupo, 'VariableNames', {'subject_id', 'grupo'});
+grupo_table = unique(grupo_table, 'rows');
+ 
+params = innerjoin(params, grupo_table, 'Keys', 'subject_id');
+ 
+writetable(params, 'params_2k1b_all_families.xlsx');
  
