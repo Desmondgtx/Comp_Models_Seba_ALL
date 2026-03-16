@@ -27,7 +27,7 @@ elseif pick_sample==3;
     
 elseif pick_sample==4;
     
-    numsubs= 84;  
+    numsubs= 64;  
     
 end;
 

@@ -27,8 +27,8 @@ elseif pick_sample==3;
     numsubs=45;
     load data_lose.mat
 elseif pick_sample ==4;
-    numsubs=84;
-    load datos_filtrados_long.mat;
+    numsubs=64;
+    load datos_long_models.mat;
 end
 
 cd(dir_analysis)
@@ -107,7 +107,7 @@ save('output_all_models.mat', 'output')
 %  Total rows = 84 sujetos x 3 familias x 4 modelos = 1008 filas
 
 % Load subject IDs
-datos_long = readtable('Data\datos_long_models.csv');
+datos_long = readtable('Datos Coni\datos_long_models.csv');
 unique_subs = unique(datos_long.sub);
 
 families = {'parabolic', 'linear', 'hyperbolic'};
@@ -246,14 +246,24 @@ writetable(comparison_table, 'model_comparison_12models.csv');
 
 
 
+
+
+
+
+
+
+
+
+
+
 %% 6. Script para transformar output_all_models_long.csv a formato wide
 %  Input:  output_all_models_long.csv (1008 filas, long format)
 %  Output: output_wide_fit_metrics.xlsx (84 filas, wide format)
 
 
 % Cargar datos
-long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Output Seba\output_all_models_long.csv');
-datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Datos Seba\datos_long_models.csv');
+long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\output_all_models_long.csv');
+datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Datos Coni\datos_long_models.csv');
 
 % Extraer grupo por sujeto
 if iscell(datos_grupo.sub) || isstring(datos_grupo.sub)
