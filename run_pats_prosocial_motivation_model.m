@@ -134,7 +134,7 @@ agent  = agent(~isnan(agent));
     elseif strcmp(modelID, 'one_k_two_beta'),
         %%% I.) first fit the model:
         outtype=1;
-         lb = [0 0 0 0];   %lower bounds on parameters  
+         lb = [0 0 0];   %lower bounds on parameters  
         ub = [0.5 100 100]; %upper bounds on parameters
         Parameter=[.1 .1 .1];                                                                                                                            % the starting values of the free parameters
         [out.x, out.fval, exitflag] = fmincon(@one_k_two_beta,Parameter,[],[],[],[],lb,ub,[],options,chosen,effort,reward,agent,stim_props,outtype); 

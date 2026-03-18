@@ -27,7 +27,7 @@ elseif pick_sample==3;
     numsubs=45;
     load data_lose.mat
 elseif pick_sample ==4;
-    numsubs=64;
+    numsubs=84;
     load datos_long_models.mat;
 end
 
@@ -36,22 +36,22 @@ cd(dir_analysis)
 %% 2. Run all models
 
 % --- Parabolic ---
-allmodels.onekonebeta                = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_one_beta');
-allmodels.twokonebetamodel           = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_one_beta');
-allmodels.onektwobetamodel           = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_two_beta');
-allmodels.twoktwobetamodel           = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_two_beta');
+allmodels.onekonebeta                = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_one_beta');
+allmodels.twokonebetamodel           = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_one_beta');
+allmodels.onektwobetamodel           = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_two_beta');
+allmodels.twoktwobetamodel           = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_two_beta');
 
 % --- Linear ---
-allmodels.onekonebetamodellinear     = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_one_beta_linear');
-allmodels.twokonebetamodellinear     = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_one_beta_linear');
-allmodels.onektwobetamodellinear     = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_two_beta_linear');
-allmodels.twoktwobetamodellinear     = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_two_beta_linear');
+allmodels.onekonebetamodellinear     = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_one_beta_linear');
+allmodels.twokonebetamodellinear     = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_one_beta_linear');
+allmodels.onektwobetamodellinear     = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_two_beta_linear');
+allmodels.twoktwobetamodellinear     = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_two_beta_linear');
 
 % --- Hyperbolic ---
-allmodels.onekonebetamodelhyperbolic = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_one_beta_hyperbolic');
-allmodels.twokonebetamodelhyperbolic = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_one_beta_hyperbolic');
-allmodels.onektwobetamodelhyperbolic = run_pats_prosocial_motivation_model(data, pick_sample,'one_k_two_beta_hyperbolic');
-allmodels.twoktwobetamodelhyperbolic = run_pats_prosocial_motivation_model(data, pick_sample,'two_k_two_beta_hyperbolic');
+allmodels.onekonebetamodelhyperbolic = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_one_beta_hyperbolic');
+allmodels.twokonebetamodelhyperbolic = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_one_beta_hyperbolic');
+allmodels.onektwobetamodelhyperbolic = run_pats_prosocial_motivation_model_con(data, pick_sample,'one_k_two_beta_hyperbolic');
+allmodels.twoktwobetamodelhyperbolic = run_pats_prosocial_motivation_model_con(data, pick_sample,'two_k_two_beta_hyperbolic');
 
 
 %% 3. Extract parameters into structured output
@@ -107,7 +107,7 @@ save('output_all_models.mat', 'output')
 %  Total rows = 84 sujetos x 3 familias x 4 modelos = 1008 filas
 
 % Load subject IDs
-datos_long = readtable('Datos Coni\datos_long_models.csv');
+datos_long = readtable('Datos Seba\datos_long_models.csv');
 unique_subs = unique(datos_long.sub);
 
 families = {'parabolic', 'linear', 'hyperbolic'};
@@ -263,7 +263,7 @@ writetable(comparison_table, 'model_comparison_12models.csv');
 
 % Cargar datos
 long_data = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\output_all_models_long.csv');
-datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Datos Coni\datos_long_models.csv');
+datos_grupo = readtable('C:\Users\yangy\Desktop\Comp_Models_Seba_ALL\Datos Seba\datos_long_models.csv');
 
 % Extraer grupo por sujeto
 if iscell(datos_grupo.sub) || isstring(datos_grupo.sub)

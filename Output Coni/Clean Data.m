@@ -3,7 +3,7 @@
 
 clear all; clc;
  
-long_data = readtable('Output Coni\output_all_models_long.csv');
+long_data = readtable('Output Coni v2\output_all_models_long.csv');
  
 if iscell(long_data.family), long_data.family = string(long_data.family); end
 if iscell(long_data.model), long_data.model = string(long_data.model); end

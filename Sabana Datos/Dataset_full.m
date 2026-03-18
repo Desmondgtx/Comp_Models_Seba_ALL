@@ -69,7 +69,7 @@ writetable(merged, 'dataset_completo.xlsx');
 
 clear all; clc;
  
-params = readtable('Sabana Datos\params_2k1b_all_families.xlsx');
+params = readtable('params_2k1b_all_families.xlsx');
 diego = readtable('Sabana Datos\pasar_a_diego_v2.csv');
  
 if iscell(diego.sub) || isstring(diego.sub)
